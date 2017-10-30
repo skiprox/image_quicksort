@@ -13,9 +13,20 @@ void setup() {
     }
     updatePixels();
     glitchIt(width * height / 1600);
+    runAndSave();
 }
 
 void draw() {
+}
+
+void runAndSave() {
+    int[] partitionsArr = {20, 40, 80, 160, 320, 640, 1280, 2560, 5120, 10240, 20480, 40960};
+    String fileName;
+    for (int x = 0; x < partitionsArr.length; x++) {
+        glitchIt(partitionsArr[x]);
+        fileName = "screenshots/test-" + x + ".png";
+        saveFrame(fileName);
+    }
 }
 
 void glitchIt(int jump) {
