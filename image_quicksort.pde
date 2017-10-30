@@ -1,22 +1,25 @@
 PImage img;
 int increment=2;
+int imgWidth = 1200;
+int imgHeight = 800;
 
 void setup() {
-    size(700, 500);
-    img = loadImage("img/cat.png");
-    image(img, 0, 0, width, height);
+    size(1200, 800);
+    img = loadImage("img/nimoy.png");
+    image(img, 0, 0, 1200, 800);
     loadPixels();
     for (int x = 0; x < ((width*height)-(increment+2)); x+=increment) {
         quicksort(pixels, x, x+increment);
     }
     updatePixels();
+    glitchIt(width * height / 1600);
 }
 
 void draw() {
 }
 
 void glitchIt(int jump) {
-    image(img, 0, 0, 700, 500);
+    image(img, 0, 0, 1200, 800);
     loadPixels();
     for (int x = 0; x < ((width*height)-(jump+1)); x+=jump) {
         quicksort(pixels, x, x+jump);
@@ -24,12 +27,12 @@ void glitchIt(int jump) {
     updatePixels();
 }
 
-void mouseMoved() {
-    float x = constrain(mouseX, 1, width);
-    float y = constrain(mouseY, 1, height);
-    int val1 = int((sqrt(x*y))*2);
-    glitchIt(val1);
-}
+// void mouseMoved() {
+//     float x = constrain(mouseX, 1, width);
+//     float y = constrain(mouseY, 1, height);
+//     int val1 = int((sqrt(x*y))*2);
+//     glitchIt(val1);
+// }
 
 int partition(int x[], int left, int right) {
     int i = left;
