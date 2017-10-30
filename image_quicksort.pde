@@ -1,33 +1,34 @@
 PImage img;
-
+int increment=2;
 
 void setup() {
-    size(600, 400);
+    size(700, 500);
     img = loadImage("img/cat.png");
     image(img, 0, 0, width, height);
     loadPixels();
+    for (int x = 0; x < ((width*height)-(increment+2)); x+=increment) {
+        quicksort(pixels, x, x+increment);
+    }
+    updatePixels();
 }
 
 void draw() {
-    for (int y=1; y<height; y++) {
-        for (int x=0; x<width; x++) {
-            if (random(1000) > 950) {
-                int j = int(random(1000));
-                if (j < 250) set(x, y, get(x, y-1));
-                else if (j < 500) set(x, y, get(x, y+1));
-                else if (j < 750) set(x, y, get(x-1, y));
-                else set(x, y, get(x+1, y));
-            }
-        }
+}
+
+void glitchIt(int jump) {
+    image(img, 0, 0, 700, 500);
+    loadPixels();
+    for (int x = 0; x < ((width*height)-(jump+1)); x+=jump) {
+        quicksort(pixels, x, x+jump);
     }
+    updatePixels();
 }
 
 void mouseMoved() {
-    image(img, 0, 0, width, height);
-    loadPixels();
-    int loc = int(mouseX*mouseY);
-    quicksort(pixels, 0, loc);
-    updatePixels();
+    float x = constrain(mouseX, 1, width);
+    float y = constrain(mouseY, 1, height);
+    int val1 = int((sqrt(x*y))*2);
+    glitchIt(val1);
 }
 
 int partition(int x[], int left, int right) {
