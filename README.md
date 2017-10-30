@@ -1,4 +1,4 @@
-# Pixel Swarm
+# Image Quicksort
 
 This is some processing stuff.
 
