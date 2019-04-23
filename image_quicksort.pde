@@ -20,7 +20,7 @@ void draw() {
 }
 
 void runAndSave() {
-    int[] partitionsArr = {20, 40, 80, 160, 320, 640, 1280, 2560, 5120, 10240, 20480, 40960};
+    int[] partitionsArr = {50, 100, 200, 400, 800, 1600, 3200, 6400, 12800, 25600, 51200, 102400};
     String fileName;
     for (int x = 0; x < partitionsArr.length; x++) {
         glitchIt(partitionsArr[x]);
